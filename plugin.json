@@ -1,0 +1,7 @@
+{
+  "name": "claudecode-plugins",
+  "version": "1.0.0",
+  "description": "Reusable Claude Code agent collections — plug into any project via plugin install.",
+  "license": "MIT",
+  "agents": ["./agents"]
+}
