@@ -1,0 +1,42 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "ok0-claude-code-plugins",
+  "description": "Reusable Claude Code agent collections — multi-agent workflows for structured development",
+  "owner": {
+    "name": "ok0"
+  },
+  "plugins": [
+    {
+      "name": "duo",
+      "description": "A two-agent workflow (architect → editor) separating design and implementation. Uses opus for complex planning and haiku for mechanical edits to save tokens.",
+      "author": {
+        "name": "ok0"
+      },
+      "category": "development",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/ok0/claude-code-plugins.git",
+        "path": "plugins/duo",
+        "ref": "main",
+        "sha": "7c76951da751f3e3901d1379cb1041a94fff6e0c"
+      },
+      "homepage": "https://github.com/ok0/claude-code-plugins"
+    },
+    {
+      "name": "trio",
+      "description": "A three-agent workflow (planner → architect → editor) adding a planning layer before design and implementation. The planner clarifies vague requests into structured specs before any code is read.",
+      "author": {
+        "name": "ok0"
+      },
+      "category": "development",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/ok0/claude-code-plugins.git",
+        "path": "plugins/trio",
+        "ref": "main",
+        "sha": "7c76951da751f3e3901d1379cb1041a94fff6e0c"
+      },
+      "homepage": "https://github.com/ok0/claude-code-plugins"
+    }
+  ]
+}

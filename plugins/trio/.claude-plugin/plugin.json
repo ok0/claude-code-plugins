@@ -1,0 +1,7 @@
+{
+  "name": "trio",
+  "description": "A three-agent workflow (planner → architect → editor) adding a planning layer before design and implementation. The planner clarifies vague requests into structured specs before any code is read.",
+  "author": {
+    "name": "ok0"
+  }
+}

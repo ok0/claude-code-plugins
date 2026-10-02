@@ -1,6 +1,0 @@
-{
-  "name": "duo",
-  "version": "1.0.0",
-  "description": "설계(architect)와 구현(editor)을 분리하는 2-에이전트 워크플로우.",
-  "agents": ["."]
-}

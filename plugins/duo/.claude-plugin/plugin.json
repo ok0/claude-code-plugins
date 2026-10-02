@@ -1,0 +1,7 @@
+{
+  "name": "duo",
+  "description": "A two-agent workflow (architect → editor) separating design and implementation. Uses opus for complex planning and haiku for mechanical edits to save tokens.",
+  "author": {
+    "name": "ok0"
+  }
+}

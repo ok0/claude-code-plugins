@@ -1,6 +1,0 @@
-{
-  "name": "trio",
-  "version": "1.0.0",
-  "description": "planner > architect > editor. 3-에이전트 워크플로우.",
-  "agents": ["."]
-}

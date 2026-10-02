@@ -1,19 +1,28 @@
-# claudecode-plugins
+# claude-code-plugins
 
 Reusable [Claude Code](https://claude.ai/code) agent collections.
 
 ## Install
 
-Install all agents:
-```bash
-/plugin install <path-to-this-repo>
+### 1. Add the marketplace
+
+In Claude Code, run:
+```
+/install trio
 ```
 
-Install a specific group (e.g., `duo`):
-```bash
-/plugin install <path-to-this-repo>/agents/duo
+When prompted to add the marketplace `github:ok0/claude-code-plugins`, confirm it.
+
+Or add the marketplace first:
 ```
-*(Each group has its own `plugin.json` for independent installation.)*
+/plugin marketplace add github:ok0/claude-code-plugins
+```
+
+Then install a specific plugin:
+```
+/install trio
+/install duo
+```
 
 ## Collections
 
@@ -23,8 +32,8 @@ A two-agent workflow separating design and implementation. Uses `opus` for compl
 
 | Agent | Model | Role |
 |-------|-------|------|
-| [`ok0-architect`](agents/duo/ok0-architect.md) | opus | Analyzes code and creates a **file-by-file change plan**. Never modifies files. |
-| [`ok0-editor`](agents/duo/ok0-editor.md) | haiku | **Mechanically executes** the plan from `ok0-architect` without making design decisions. |
+| [`ok0-architect`](plugins/duo/agents/ok0-architect.md) | opus | Analyzes code and creates a **file-by-file change plan**. Never modifies files. |
+| [`ok0-editor`](plugins/duo/agents/ok0-editor.md) | haiku | **Mechanically executes** the plan from `ok0-architect` without making design decisions. |
 
 **Workflow:**
 ```
@@ -40,9 +49,9 @@ A three-agent workflow adding a planning layer before design and implementation.
 
 | Agent | Model | Role |
 |-------|-------|------|
-| [`ok0-planner`](agents/trio/ok0-planner.md) | sonnet | Asks clarifying questions and produces a **structured spec (PRD)**. No code access. |
-| [`ok0-architect`](agents/trio/ok0-architect.md) | opus | Reads code and turns the spec into a **file-by-file change plan**. Never modifies files. |
-| [`ok0-editor`](agents/trio/ok0-editor.md) | haiku | **Mechanically executes** the plan from `ok0-architect` without making design decisions. |
+| [`ok0-planner`](plugins/trio/agents/ok0-planner.md) | sonnet | Asks clarifying questions and produces a **structured spec (PRD)**. No code access. |
+| [`ok0-architect`](plugins/trio/agents/ok0-architect.md) | opus | Reads code and turns the spec into a **file-by-file change plan**. Never modifies files. |
+| [`ok0-editor`](plugins/trio/agents/ok0-editor.md) | haiku | **Mechanically executes** the plan from `ok0-architect` without making design decisions. |
 
 **Workflow:**
 ```
@@ -57,17 +66,22 @@ User → @ok0-editor (Hand over the plan)
 ## Structure
 
 ```text
-claudecode-plugins/
-├── plugin.json
+claude-code-plugins/
+├── .claude-plugin/
+│   └── marketplace.json      # Marketplace registry
 ├── README.md
-└── agents/
+└── plugins/
     ├── duo/
-    │   ├── plugin.json
-    │   ├── ok0-architect.md
-    │   └── ok0-editor.md
+    │   ├── .claude-plugin/
+    │   │   └── plugin.json   # Plugin metadata
+    │   └── agents/
+    │       ├── ok0-architect.md
+    │       └── ok0-editor.md
     └── trio/
-        ├── plugin.json
-        ├── ok0-planner.md
-        ├── ok0-architect.md
-        └── ok0-editor.md
+        ├── .claude-plugin/
+        │   └── plugin.json   # Plugin metadata
+        └── agents/
+            ├── ok0-planner.md
+            ├── ok0-architect.md
+            └── ok0-editor.md
 ```
