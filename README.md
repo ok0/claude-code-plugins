@@ -46,7 +46,7 @@ A three-agent workflow adding a planning layer before design and implementation.
 
 **Workflow:**
 ```
-User → @ok0-planner "중고차 비교 사이트 만들어줘"
+User → @ok0-planner "Add a login feature"
        ↓ (Clarifies → Outputs spec)
 User → @ok0-architect (Hand over the spec)
        ↓ (Reads code → Outputs change plan)
