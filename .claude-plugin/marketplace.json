@@ -18,7 +18,7 @@
         "url": "https://github.com/ok0/claude-code-plugins.git",
         "path": "plugins/duo",
         "ref": "main",
-        "sha": "7c76951da751f3e3901d1379cb1041a94fff6e0c"
+        "sha": "044685f38ac437261eba65554749cbb5be31b79b"
       },
       "homepage": "https://github.com/ok0/claude-code-plugins"
     },
@@ -34,7 +34,7 @@
         "url": "https://github.com/ok0/claude-code-plugins.git",
         "path": "plugins/trio",
         "ref": "main",
-        "sha": "7c76951da751f3e3901d1379cb1041a94fff6e0c"
+        "sha": "044685f38ac437261eba65554749cbb5be31b79b"
       },
       "homepage": "https://github.com/ok0/claude-code-plugins"
     }
