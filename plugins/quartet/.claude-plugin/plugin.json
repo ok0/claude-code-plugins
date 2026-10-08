@@ -1,0 +1,7 @@
+{
+  "name": "quartet",
+  "description": "A four-agent workflow (planner → architect → editor → verifier) that closes the loop with an independent verifier. The verifier checks every acceptance criterion and routes failures back to the right agent. Orchestrated by the /quartet command.",
+  "author": {
+    "name": "ok0"
+  }
+}

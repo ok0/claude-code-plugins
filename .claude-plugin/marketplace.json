@@ -37,6 +37,21 @@
         "sha": "044685f38ac437261eba65554749cbb5be31b79b"
       },
       "homepage": "https://github.com/ok0/claude-code-plugins"
+    },
+    {
+      "name": "quartet",
+      "description": "A four-agent workflow (planner → architect → editor → verifier) that closes the loop with an independent verifier. The verifier checks every acceptance criterion and routes failures back to the right agent. Orchestrated by the /quartet command.",
+      "author": {
+        "name": "ok0"
+      },
+      "category": "development",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/ok0/claude-code-plugins.git",
+        "path": "plugins/quartet",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/ok0/claude-code-plugins"
     }
   ]
 }
