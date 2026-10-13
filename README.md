@@ -20,6 +20,7 @@ Or add the marketplace first:
 
 Then install a specific plugin:
 ```
+/install ensemble
 /install quartet
 /install triad
 /install trio
@@ -122,6 +123,46 @@ User → /quartet "Add a login feature"
 
 Hand-off files are written to `.quartet/` in your project. Add it to your project's `.gitignore` if you don't want to commit them.
 
+### ensemble
+
+A seven-agent workflow for taking a **whole project from brief to release** — not just one change. It adds sourced web research before any decision, a project-level charter, a blueprint with decision records and a milestone roadmap, a verified loop per milestone (with parallel editors and a debugger), and a final release check against the charter. All state lives on disk, so `/ensemble` resumes across sessions.
+
+| Agent | Model | Role |
+|-------|-------|------|
+| [`ok0-researcher`](plugins/ensemble/agents/ok0-researcher.md) | sonnet | Researches **one topic** (web + local docs/reference code) within a **depth budget** (quick/standard/deep) and writes a note where every claim has sources and **external/internal credibility** ratings. Never decides the design. |
+| [`ok0-planner`](plugins/ensemble/agents/ok0-planner.md) | sonnet | **CHARTER** mode: project-wide requirements + project acceptance criteria. **MILESTONE** mode: per-milestone spec. Reads planning docs only, never code. |
+| [`ok0-architect`](plugins/ensemble/agents/ok0-architect.md) | opus | **BLUEPRINT** mode: layers, modules, tech stack, ADRs, milestone roadmap. **PLAN** mode: file-by-file plan in **parallelizable work groups**. **REVISION** mode edits only the changed sections. Never modifies project source. |
+| [`ok0-scout`](plugins/ensemble/agents/ok0-scout.md) | haiku | Builds a **fact-only context map** (files, signatures, conventions, commands) so opus doesn't spend tokens exploring. |
+| [`ok0-editor`](plugins/ensemble/agents/ok0-editor.md) | haiku | **Mechanically executes** one work group; several run in parallel on disjoint files. |
+| [`ok0-verifier`](plugins/ensemble/agents/ok0-verifier.md) | sonnet | **MILESTONE** mode: AC PASS/FAIL, regression, plan + blueprint conformance, failure class. **RELEASE** mode: judges every charter PAC end-to-end. Never modifies files. |
+| [`ok0-debugger`](plugins/ensemble/agents/ok0-debugger.md) | sonnet | Reproduces a failure, finds the root cause, and returns a **small fix plan** or an escalation (DESIGN / SPEC / BLUEPRINT). |
+
+**Workflow:**
+```
+User → /ensemble "<project brief>"          (later: /ensemble to resume)
+  1 RESEARCH   agenda ⇄ User → researcher ×N (parallel)   → .ensemble/research/*.md
+  2 CHARTER    planner ─ QUESTIONS ⇄ User                 → .ensemble/charter.md      [User approves]
+  3 BLUEPRINT  architect (+ research on demand)           → blueprint.md, roadmap.md  [User approves]
+  4 MILESTONES for each milestone in dependency order:
+       planner → scout → architect → editor ×N (parallel waves) → verifier
+         PASS → commit, next milestone (pause or autonomous)
+         FAIL → IMPLEMENTATION → editor → verifier
+                DESIGN         → debugger → FIX PLAN → editor
+                                          → ESCALATE → architect → editor
+                SPEC           → stop, ask User
+                BLUEPRINT      → stop, User approves → architect revises blueprint/roadmap
+         (stops on no progress; budgets per milestone: IMPLEMENTATION 3, DESIGN 2, total 4)
+  5 RELEASE    verifier checks every charter PAC end-to-end
+         FAIL → architect appends fix milestones → 4
+         PASS → DONE
+```
+
+Other commands: `/ensemble status`, `/ensemble research <topic>`, `/ensemble change <request>`.
+
+**Token discipline:** each agent writes its own document under `.ensemble/` and returns only a short `RESULT` block, so the orchestrating session never copies or re-reads documents; revisions are in-place edits of only the changed sections; research defaults to at most 5 topics with per-topic fetch and length budgets.
+
+Project state is written to `.ensemble/` in your project. Committing it keeps the project resumable on any machine; add it to `.gitignore` if you prefer not to.
+
 ## Structure
 
 ```text
@@ -152,14 +193,27 @@ claude-code-plugins/
     │   │   └── ok0-verifier.md
     │   └── commands/
     │       └── triad.md      # /triad orchestration
-    └── quartet/
+    ├── quartet/
+    │   ├── .claude-plugin/
+    │   │   └── plugin.json   # Plugin metadata
+    │   ├── agents/
+    │   │   ├── ok0-planner.md
+    │   │   ├── ok0-architect.md
+    │   │   ├── ok0-editor.md
+    │   │   └── ok0-verifier.md
+    │   └── commands/
+    │       └── quartet.md    # /quartet orchestration
+    └── ensemble/
         ├── .claude-plugin/
         │   └── plugin.json   # Plugin metadata
         ├── agents/
+        │   ├── ok0-researcher.md
         │   ├── ok0-planner.md
         │   ├── ok0-architect.md
+        │   ├── ok0-scout.md
         │   ├── ok0-editor.md
-        │   └── ok0-verifier.md
+        │   ├── ok0-verifier.md
+        │   └── ok0-debugger.md
         └── commands/
-            └── quartet.md    # /quartet orchestration
+            └── ensemble.md   # /ensemble orchestration
 ```

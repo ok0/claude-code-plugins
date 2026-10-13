@@ -1,0 +1,7 @@
+{
+  "name": "ensemble",
+  "description": "A seven-agent, start-to-finish project workflow (researcher → planner → architect → scout → editor ×N → verifier → debugger). Takes a project brief through sourced research, a charter, a blueprint and milestone roadmap, verified milestone loops, and a final release check. Resumable across sessions. Orchestrated by the /ensemble command.",
+  "author": {
+    "name": "ok0"
+  }
+}

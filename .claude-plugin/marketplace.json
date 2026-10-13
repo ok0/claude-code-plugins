@@ -68,6 +68,21 @@
         "sha": "1c3e31e"
       },
       "homepage": "https://github.com/ok0/claude-code-plugins"
+    },
+    {
+      "name": "ensemble",
+      "description": "A seven-agent, start-to-finish project workflow (researcher → planner → architect → scout → editor ×N → verifier → debugger). Takes a project brief through sourced research, a charter, a blueprint and milestone roadmap, verified milestone loops, and a final release check. Resumable across sessions. Orchestrated by the /ensemble command.",
+      "author": {
+        "name": "ok0"
+      },
+      "category": "development",
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/ok0/claude-code-plugins.git",
+        "path": "plugins/ensemble",
+        "ref": "main"
+      },
+      "homepage": "https://github.com/ok0/claude-code-plugins"
     }
   ]
 }
