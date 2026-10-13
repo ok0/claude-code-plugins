@@ -21,6 +21,7 @@ Or add the marketplace first:
 Then install a specific plugin:
 ```
 /install quartet
+/install triad
 /install trio
 /install duo
 ```
@@ -63,6 +64,34 @@ User → @ok0-architect (Hand over the spec)
 User → @ok0-editor (Hand over the plan)
        ↓ (Edits code + runs build/checks)
 ```
+
+### triad
+
+A three-agent workflow that adds an **independent verifier** without a separate planning step — for requests that are clear enough to go straight to design. The architect derives requirements and testable acceptance criteria from the request itself (asking clarifying questions only when it must), and the verifier also checks that those criteria actually cover the request. The `/triad` command orchestrates the whole flow.
+
+| Agent | Model | Role |
+|-------|-------|------|
+| [`ok0-architect`](plugins/triad/agents/ok0-architect.md) | opus | Reads code, derives **requirements + acceptance criteria** from the request, and produces a **file-by-file change plan** with a **verification section**. Returns **clarifying questions** instead if the request is too ambiguous. Never modifies files. |
+| [`ok0-editor`](plugins/triad/agents/ok0-editor.md) | haiku | **Mechanically executes** the plan. Never weakens tests and never judges the result. |
+| [`ok0-verifier`](plugins/triad/agents/ok0-verifier.md) | sonnet | Checks **request coverage**, runs checks, judges each acceptance criterion **PASS/FAIL**, checks plan conformance, and classifies failures. Never modifies files. |
+
+**Workflow:**
+```
+User → /triad "Add a login feature"
+  architect ─ QUESTIONS ⇄ User          → .triad/plan.md
+            (assumptions? → confirm with User)
+  editor
+  verifier                              → .triad/verify.md
+     (skipped for small changes: ≤2 files, simple criteria, clean editor report)
+     PASS → report
+     FAIL → IMPLEMENTATION → editor → verifier
+            DESIGN         → architect → editor → verifier
+            SPEC           → stop, ask User
+     (stops on no progress; budgets: IMPLEMENTATION 2, DESIGN 1, total 3;
+      a repeated IMPLEMENTATION failure escalates to DESIGN)
+```
+
+Hand-off files are written to `.triad/` in your project. Add it to your project's `.gitignore` if you don't want to commit them.
 
 ### quartet
 
@@ -114,6 +143,15 @@ claude-code-plugins/
     │       ├── ok0-planner.md
     │       ├── ok0-architect.md
     │       └── ok0-editor.md
+    ├── triad/
+    │   ├── .claude-plugin/
+    │   │   └── plugin.json   # Plugin metadata
+    │   ├── agents/
+    │   │   ├── ok0-architect.md
+    │   │   ├── ok0-editor.md
+    │   │   └── ok0-verifier.md
+    │   └── commands/
+    │       └── triad.md      # /triad orchestration
     └── quartet/
         ├── .claude-plugin/
         │   └── plugin.json   # Plugin metadata

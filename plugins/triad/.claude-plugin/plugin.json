@@ -1,0 +1,7 @@
+{
+  "name": "triad",
+  "description": "A three-agent workflow (architect → editor → verifier) that closes the loop with an independent verifier, without a separate planning step. The architect derives acceptance criteria straight from the request; the verifier checks them and routes failures back to the right agent. Orchestrated by the /triad command.",
+  "author": {
+    "name": "ok0"
+  }
+}
