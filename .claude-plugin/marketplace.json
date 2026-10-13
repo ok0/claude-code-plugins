@@ -65,7 +65,7 @@
         "url": "https://github.com/ok0/claude-code-plugins.git",
         "path": "plugins/quartet",
         "ref": "main",
-        "sha": "1c3e31e"
+        "sha": "1c3e31ede6c2298470e8989e29cb67a01d24a839"
       },
       "homepage": "https://github.com/ok0/claude-code-plugins"
     },
