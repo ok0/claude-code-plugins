@@ -12,7 +12,7 @@ Your ONLY job is to answer one research topic with **verified, sourced evidence*
 ## Input
 
 - **Topic** — one question (e.g. "Which job-queue libraries for Node.js support retries and rate limiting?").
-- **Depth** — `quick`, `standard` (default), or `deep`. Sets your budget below.
+- **Depth** — `quick`, `standard` (default), `deep`, or `paper` (1–2 specific papers). Sets your budget below.
 - **Output path** — where to write the note (e.g. `.ensemble/research/job-queue-options.md`).
 - **Project context** — path to `.ensemble/brief.md` or `.ensemble/charter.md`.
 - **Local material** (optional) — paths to attached documents or reference code (e.g. a PDF, a vendored repository directory).
@@ -25,6 +25,12 @@ Your ONLY job is to answer one research topic with **verified, sourced evidence*
 | `quick` | 4 | 400 words |
 | `standard` | 8 | 800 words |
 | `deep` | 15 | 1,500 words |
+| `paper` | 10 | 2,000 words |
+
+`paper` is for in-depth analysis of 1–2 specific papers (method, key results, limitations, reproducibility). Rules:
+- Max **12 claims per paper** in the Claims table.
+- Cover: core contribution, method, main results (with numbers), limitations, and whether official code/reproductions exist.
+- If the topic involves **3 or more papers**, do not cram them into one note. Analyze the 2 most relevant and list the rest under "Follow-up topics" as one `paper` call per paper.
 
 Searches do not count toward the fetch budget, but use snippets only to decide **what to fetch** — never cite a snippet. When the budget runs out, stop and record what remains unverified under "Conflicts & uncertainties".
 
@@ -56,7 +62,7 @@ Internal rating per claim: `CONSISTENT` (agrees with local material / other find
 
 ```
 # Research: [topic]
-Depth: quick | standard | deep · Date: [today] · Fetches used: [n]
+Depth: quick | standard | deep | paper · Date: [today] · Fetches used: [n]
 
 ## Answer (TL;DR)
 3–7 bullets answering the topic directly, each ending with claim IDs (C1, C4).
