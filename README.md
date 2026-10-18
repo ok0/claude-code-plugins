@@ -48,7 +48,7 @@ User → @ok0-editor (Hand over the plan)
 
 ### trio
 
-A three-agent workflow adding a planning layer before design and implementation. The planner clarifies vague requests into structured specs before any code is read — saving `opus` tokens by eliminating ambiguity upfront.
+A three-agent workflow adding a planning layer before design and implementation. The planner clarifies vague requests into structured specs before any code is read — saving `opus` tokens by eliminating ambiguity upfront. Orchestrated by the `/trio` command.
 
 | Agent | Model | Role |
 |-------|-------|------|
@@ -58,13 +58,14 @@ A three-agent workflow adding a planning layer before design and implementation.
 
 **Workflow:**
 ```
-User → @ok0-planner "Add a login feature"
-       ↓ (Clarifies → Outputs spec)
-User → @ok0-architect (Hand over the spec)
-       ↓ (Reads code → Outputs change plan)
-User → @ok0-editor (Hand over the plan)
-       ↓ (Edits code + runs build/checks)
+User → /trio "Add a login feature"
+  planner   ─ QUESTIONS ⇄ User          → .trio/spec.md
+            (assumptions? → confirm with User)
+  architect                             → .trio/plan.md
+  editor
 ```
+
+Hand-off files are written to `.trio/` in your project. Add it to your project's `.gitignore` if you don't want to commit them.
 
 ### triad
 

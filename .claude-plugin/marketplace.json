@@ -24,7 +24,7 @@
     },
     {
       "name": "trio",
-      "description": "A three-agent workflow (planner → architect → editor) adding a planning layer before design and implementation. The planner clarifies vague requests into structured specs before any code is read.",
+      "description": "A three-agent workflow (planner → architect → editor) adding a planning layer before design and implementation. The planner clarifies vague requests into structured specs before any code is read. Orchestrated by the /trio command.",
       "author": {
         "name": "ok0"
       },
@@ -33,8 +33,7 @@
         "source": "git-subdir",
         "url": "https://github.com/ok0/claude-code-plugins.git",
         "path": "plugins/trio",
-        "ref": "main",
-        "sha": "044685f38ac437261eba65554749cbb5be31b79b"
+        "ref": "main"
       },
       "homepage": "https://github.com/ok0/claude-code-plugins"
     },
