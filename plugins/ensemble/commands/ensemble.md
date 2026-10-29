@@ -70,7 +70,7 @@ Updated: <ISO timestamp>
    - Otherwise → treat the arguments as the brief. If the brief is a file path, record the path instead of copying the file. Save to `.ensemble/brief.md` with the paths of any attached documents or reference repos mentioned. If the project directory is not a git repository, ask the user whether to run `git init` (recommended — the verifier relies on `git diff`). Create `state.md` with `Phase: RESEARCH` and go to Phase 1.
 2. If `state.md` exists:
    - Arguments empty → **resume**: read `state.md`, tell the user in one or two lines where the project is, and continue at the recorded phase and step. If `Open items` lists something waiting on the user, ask it first.
-   - `status` → print the phase, current milestone/step, the milestone table, and open items. Stop.
+   - `status` → produce the progress report by following the `ensemble-progress` skill (read-only: phase position, milestone progress, milestone table, recent activity, risks, open items, next step). Do not modify any file. Stop.
    - `research <topic>` → research that single topic at `standard` depth (Phase 1 steps 3–4), then continue where you were.
    - `change <request>` → go to **Change requests**.
    - Anything else → ask the user whether it is a change request or a new project (a new project needs a different directory). Stop.
